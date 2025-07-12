@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles } from "lucide-react";
+import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles, Copy, Check } from "lucide-react";
 
 function fakeScrape(url: string): string {
   const lowerUrl = url.toLowerCase();
@@ -69,6 +69,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
+  const [copied, setCopied] = useState<{ type: 'en' | 'ur' | null }>({ type: null });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,6 +124,12 @@ export default function Home() {
     }
   };
 
+  const handleCopy = (text: string, type: 'en' | 'ur') => {
+    navigator.clipboard.writeText(text);
+    setCopied({ type });
+    setTimeout(() => setCopied({ type: null }), 1200);
+  };
+
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Overlay for focus */}
@@ -170,6 +177,14 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-1">
                 <FileText className="w-5 h-5 text-blue-500" />
                 <h2 className="font-semibold">Summary (English):</h2>
+                <button
+                  onClick={() => handleCopy(summary, 'en')}
+                  className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition"
+                  aria-label="Copy English summary"
+                  type="button"
+                >
+                  {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+                </button>
               </div>
               <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
             </div>
@@ -179,6 +194,14 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-1">
                 <Languages className="w-5 h-5 text-pink-500" />
                 <h2 className="font-semibold">Summary (Urdu):</h2>
+                <button
+                  onClick={() => handleCopy(urdu, 'ur')}
+                  className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 transition"
+                  aria-label="Copy Urdu summary"
+                  type="button"
+                >
+                  {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+                </button>
               </div>
               <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
             </div>
