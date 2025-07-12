@@ -1,26 +1,26 @@
 "use client";
 import React, { useState } from "react";
-import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save } from "lucide-react";
+import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles } from "lucide-react";
 
 function fakeScrape(url: string): string {
   const lowerUrl = url.toLowerCase();
   if (lowerUrl.includes("tech")) {
-    return `Technology is evolving at a rapid pace. Artificial intelligence and robotics are shaping the future. Stay tuned for more tech updates!`;
+    return `Technology is evolving at a rapid pace. Artificial intelligence and robotics are shaping the future. Stay tuned for more tech updates! In recent years, breakthroughs in machine learning have enabled smarter devices and automation in everyday life. The tech industry continues to innovate, bringing new possibilities to society.`;
   }
   if (lowerUrl.includes("news")) {
-    return `Breaking news: Major events are unfolding around the world. Experts provide insights on the latest developments. Stay informed with our news coverage.`;
+    return `Breaking news: Major events are unfolding around the world. Experts provide insights on the latest developments. Stay informed with our news coverage. From political shifts to scientific discoveries, the news landscape is constantly changing. Our team brings you the most important stories as they happen.`;
   }
   if (lowerUrl.includes("food")) {
-    return `Food lovers rejoice! Discover delicious recipes and culinary tips. From street food to gourmet meals, explore the world of flavors.`;
+    return `Food lovers rejoice! Discover delicious recipes and culinary tips. From street food to gourmet meals, explore the world of flavors. Cooking at home has never been more exciting, with new ingredients and fusion cuisines inspiring creativity in the kitchen. Join us as we celebrate food culture from around the globe.`;
   }
   if (lowerUrl.includes("travel")) {
-    return `Travel the globe with us. Explore hidden gems, travel tips, and inspiring stories from adventurers. Your next journey awaits!`;
+    return `Travel the globe with us. Explore hidden gems, travel tips, and inspiring stories from adventurers. Your next journey awaits! Whether you seek adventure or relaxation, our guides help you make the most of every destination. Experience the beauty and diversity of cultures worldwide.`;
   }
   if (lowerUrl.includes("health")) {
-    return `Health and wellness are essential for a happy life. Learn about nutrition, exercise, and mental well-being. Start your health journey today!`;
+    return `Health and wellness are essential for a happy life. Learn about nutrition, exercise, and mental well-being. Start your health journey today! Our experts share advice on building healthy habits, managing stress, and staying active. Prioritize your well-being for a better tomorrow.`;
   }
-  // Default generic blog
-  return `This is a sample blog article about technology and news. Today, the world is changing rapidly. Welcome to the blog!`;
+ 
+  return `This is a sample blog article about technology and news. Today, the world is changing rapidly. Welcome to the blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings. Stay connected for more insightful articles.`;
 }
 
 function fakeSummary(text: string): string {
@@ -124,72 +124,83 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4 transition-colors duration-500">
-      <div className="w-full max-w-xl bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 backdrop-blur-md">
-        <h1 className="text-3xl font-extrabold mb-2 text-center tracking-tight text-gray-900 dark:text-white flex items-center justify-center gap-2">
-          <Globe className="w-8 h-8 text-blue-600 dark:text-blue-400" /> Blog Summariser
-        </h1>
-        <div className="flex justify-center mb-6">
-          <span className="inline-block w-16 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full"></span>
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Overlay for focus */}
+      <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
+      {/* Centered content */}
+      <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-0">
+        <div className="w-full max-w-lg min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 backdrop-blur-md flex flex-col items-center">
+          {/* Logo/Avatar */}
+          <div className="flex items-center justify-center mb-4">
+            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
+              <Sparkles className="w-8 h-8 text-white" />
+            </span>
+          </div>
+          <h1 className="text-3xl font-extrabold mb-1 text-center tracking-tight text-gray-900 dark:text-white flex items-center justify-center gap-2">
+            Blog Summariser
+          </h1>
+          <div className="flex justify-center mb-6">
+            <span className="inline-block w-16 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full"></span>
+          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full mb-6">
+            <input
+              type="url"
+              required
+              placeholder="Enter blog URL..."
+              className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white transition"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
+              disabled={loading}
+            >
+              <FileText className="w-5 h-5" />
+              {loading ? "Summarising..." : "Summarise"}
+            </button>
+          </form>
+          {message && (
+            <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in w-full ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+              {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" /> : <AlertCircle className="w-5 h-5 text-red-600" />} {message}
+            </div>
+          )}
+          {summary && (
+            <div className="mb-4 w-full animate-fade-in">
+              <div className="flex items-center gap-2 mb-1">
+                <FileText className="w-5 h-5 text-blue-500" />
+                <h2 className="font-semibold">Summary (English):</h2>
+              </div>
+              <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
+            </div>
+          )}
+          {urdu && (
+            <div className="mb-4 w-full animate-fade-in">
+              <div className="flex items-center gap-2 mb-1">
+                <Languages className="w-5 h-5 text-pink-500" />
+                <h2 className="font-semibold">Summary (Urdu):</h2>
+              </div>
+              <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
+            </div>
+          )}
+          {fullText && (
+            <details className="mt-4 w-full animate-fade-in">
+              <summary className="cursor-pointer font-semibold flex items-center gap-2"><Globe className="w-5 h-5 text-purple-500" /> Show Full Blog Text</summary>
+              <p className="mt-2 text-sm bg-emerald-50 dark:bg-emerald-900 rounded-lg p-3 border dark:border-gray-700 shadow-inner transition">{fullText}</p>
+            </details>
+          )}
+          {summary && urdu && fullText && (
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="mt-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-green-700 hover:to-emerald-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 w-full"
+            >
+              <Save className="w-5 h-5" /> {saving ? "Saving..." : "Save to Database"}
+            </button>
+          )}
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mb-6">
-          <input
-            type="url"
-            required
-            placeholder="Enter blog URL..."
-            className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white transition"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
-            disabled={loading}
-          >
-            <FileText className="w-5 h-5" />
-            {loading ? "Summarising..." : "Summarise"}
-          </button>
-        </form>
-        {message && (
-          <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-            {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" /> : <AlertCircle className="w-5 h-5 text-red-600" />} {message}
-          </div>
-        )}
-        {summary && (
-          <div className="mb-4">
-            <div className="flex items-center gap-2 mb-1">
-              <FileText className="w-5 h-5 text-blue-500" />
-              <h2 className="font-semibold">Summary (English):</h2>
-            </div>
-            <p className="bg-gray-100 dark:bg-gray-700 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
-          </div>
-        )}
-        {urdu && (
-          <div className="mb-4">
-            <div className="flex items-center gap-2 mb-1">
-              <Languages className="w-5 h-5 text-pink-500" />
-              <h2 className="font-semibold">Summary (Urdu):</h2>
-            </div>
-            <p className="bg-gray-100 dark:bg-gray-700 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
-          </div>
-        )}
-        {fullText && (
-          <details className="mt-4">
-            <summary className="cursor-pointer font-semibold flex items-center gap-2"><Globe className="w-5 h-5 text-purple-500" /> Show Full Blog Text</summary>
-            <p className="mt-2 text-sm bg-gray-50 dark:bg-gray-900 rounded-lg p-3 border dark:border-gray-700 shadow-inner transition">{fullText}</p>
-          </details>
-        )}
-        {summary && urdu && fullText && (
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="mt-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-green-700 hover:to-emerald-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
-          >
-            <Save className="w-5 h-5" /> {saving ? "Saving..." : "Save to Database"}
-          </button>
-        )}
-      </div>
-      <footer className="mt-8 text-gray-500 text-xs text-center">
+      </main>
+      <footer className="w-full py-6 text-gray-500 text-xs text-center mt-auto z-10">
         &copy; {new Date().getFullYear()} Blog Summariser
       </footer>
     </div>

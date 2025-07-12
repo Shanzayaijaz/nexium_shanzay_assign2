@@ -59,4 +59,20 @@ A visually appealing Next.js app to summarise blog articles, translate summaries
 - Click **Summarise** to generate a summary and Urdu translation
 - Click **Save to Database** to store the results in Supabase and MongoDB
 
+<<<<<<< HEAD
 
+=======
+## Deployment
+- Push your code to GitHub
+- [Connect your repo to Vercel](https://vercel.com/import)
+- Set the same environment variables in Vercel dashboard
+- Deploy!
+
+## Credits
+- UI inspired by [ShadCN UI](https://ui.shadcn.com/)
+- Icons from [lucide.dev](https://lucide.dev/)
+
+---
+
+**Enjoy summarising blogs with style!**
+>>>>>>> 0448801 (local changes before pull)

@@ -121,6 +121,16 @@
   }
 }
 
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.7s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: none;}
+  }
+}
+
 /* Add font for Urdu text */
 .urdu-text {
   font-family: 'Noto Nastaliq Urdu', 'Noto Naskh Arabic', serif;
