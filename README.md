@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog Summariser
 
-## Getting Started
+A visually appealing Next.js app to summarise blog articles, translate summaries to Urdu, and save results to Supabase and MongoDB. Styled with Tailwind CSS and ShadCN-inspired UI.
 
-First, run the development server:
+## Features
+- Input a blog URL and simulate scraping the text
+- Generate an AI-like summary (static logic)
+- Translate the summary to Urdu (full-sentence mapping)
+- Save the summary to Supabase and the full text to MongoDB
+- Modern, responsive UI with icons and gradients
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
+- Next.js (App Router, TypeScript)
+- Tailwind CSS
+- [lucide-react](https://lucide.dev/icons/) for icons
+- Supabase (for summaries)
+- MongoDB (for full blog text)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
+   ```sh
+   git clone <your-repo-url>
+   cd <your-repo-folder>
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+   ```sh
+   npm install
+   npm install lucide-react @supabase/supabase-js mongodb
+   ```
 
-## Learn More
+3. **Configure environment variables**
+   Create a `.env.local` file in the project root:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   MONGODB_URI=your_mongodb_connection_string
+   ```
+   - Get Supabase credentials from your [Supabase project settings](https://app.supabase.com/).
+   - Get MongoDB URI from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) or your own server.
 
-To learn more about Next.js, take a look at the following resources:
+4. **Supabase Table Setup**
+   - Create a table called `summaries` with columns:
+     - `id` (uuid or int, primary key)
+     - `url` (text)
+     - `summary` (text)
+     - `urdu_summary` (text)
+     - `created_at` (timestamp, optional)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Run the development server**
+   ```sh
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
+- Enter a blog URL (e.g. `https://example.com/tech-latest`)
+- Click **Summarise** to generate a summary and Urdu translation
+- Click **Save to Database** to store the results in Supabase and MongoDB
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
