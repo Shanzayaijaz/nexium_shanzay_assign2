@@ -264,16 +264,16 @@ export default function Home() {
       <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
       {/* Classy header */}
       <header className="w-full flex flex-col items-center justify-center py-8 mb-2 z-30 relative">
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-center gap-3 mb-2 flex-wrap">
           <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 shadow-lg animate-fade-in">
             <Sparkles className="w-8 h-8 text-white" />
           </span>
-          <span className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white animate-fade-in">Blog Summariser</span>
+          <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white animate-fade-in">Blog Summariser</span>
           {/* Dropdown menu for example blogs */}
-          <div className="relative ml-6" ref={dropdownRef}>
+          <div className="relative ml-6 w-full max-w-xs sm:max-w-none" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen((v) => !v)}
-              className="flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-semibold shadow hover:from-blue-600 hover:to-emerald-600 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 text-white font-semibold shadow hover:from-blue-600 hover:to-emerald-600 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full sm:w-auto"
               aria-haspopup="true"
               aria-expanded={dropdownOpen}
               aria-label="Featured Blogs"
@@ -282,7 +282,7 @@ export default function Home() {
               Featured Blogs <ChevronDown className="w-4 h-4" />
             </button>
             {dropdownOpen && (
-              <div className="absolute left-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-50 animate-fade-in">
+              <div className="absolute left-0 mt-2 w-full sm:w-72 max-w-xs sm:max-w-none bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-50 animate-fade-in overflow-x-auto">
                 <div className="p-3">
                   {exampleBlogsDropdown.map((group) => (
                     <div key={group.label} className="mb-3 last:mb-0">
@@ -307,41 +307,16 @@ export default function Home() {
             )}
           </div>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 text-base font-medium animate-fade-in delay-100">Summarise blogs, translate to Urdu, and save your insights.</p>
+        <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg font-medium animate-fade-in delay-100 text-center">Summarise blogs, translate to Urdu, and save your insights.</p>
       </header>
-      <div className="flex flex-1 flex-col lg:flex-row items-stretch justify-center z-10 w-full min-h-screen">
+      <div className="flex flex-1 flex-col lg:flex-row items-stretch justify-center z-10 w-full min-h-screen px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32">
         {/* Sidebar for example blogs (desktop) */}
         {/* (Remove or comment out the old sidebar and mobile example blogs section) */}
         {/* Main content */}
         <main className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 w-full">
-          {/* Example blogs for mobile (above input) */}
-          <div className="block lg:hidden w-full max-w-xl mx-auto mb-4">
-            <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-3">
-              <h3 className="font-bold mb-2 text-sm">Try these example blogs:</h3>
-              <div className="flex flex-wrap gap-2">
-                {exampleBlogsDropdown.map((group) => (
-                  <div key={group.label} className="flex flex-col">
-                    <div className="font-bold text-gray-700 dark:text-gray-200 mb-1 text-sm">{group.label}</div>
-                    <div className="flex flex-wrap gap-2">
-                      {group.links.map((link) => (
-                        <button
-                          key={link.url}
-                          onClick={() => { setUrl(link.url); }}
-                          className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 text-xs transition-all duration-150 hover:scale-105"
-                          type="button"
-                        >
-                          {link.name}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
           <AuthForm />
           {/* Main card */}
-          <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-[320px] bg-white/95 dark:bg-gray-800/95 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-12 backdrop-blur-md flex flex-col items-center animate-fade-in">
+          <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-0 bg-white/95 dark:bg-gray-800/95 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-12 backdrop-blur-md flex flex-col items-center animate-fade-in">
             {/* Divider */}
             <div className="w-full flex justify-center my-6">
               <span className="inline-block w-24 h-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 rounded-full opacity-70"></span>
