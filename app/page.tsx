@@ -25,20 +25,42 @@ function fakeScrape(url: string): string {
   return `Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.\n\nOur mission is to inform, inspire, and connect readers from all walks of life. Stay connected for more insightful articles and join our community of curious minds.`;
 }
 
-function fakeSummary(text: string): string {
-  if (text.includes("technology")) {
-    return "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.";
-  }
-  if (text.includes("news")) {
-    return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
-  }
-  if (text.includes("food")) {
-    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
-  }
-  if (text.includes("travel")) {
+function fakeSummary(text: string, url: string): string {
+  const lowerUrl = url.toLowerCase();
+  if (lowerUrl.includes("nomadicmatt.com")) {
     return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
   }
-  if (text.includes("health")) {
+  if (lowerUrl.includes("seriouseats.com")) {
+    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
+  }
+  if (lowerUrl.includes("cnn.com") || lowerUrl.includes("bbc.com") || lowerUrl.includes("newsportal.com")) {
+    return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
+  }
+  if (lowerUrl.includes("techcrunch.com") || lowerUrl.includes("theverge.com") || lowerUrl.includes("example.com/tech-latest")) {
+    return "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.";
+  }
+  if (lowerUrl.includes("foodie.com") || lowerUrl.includes("blog.com/food-lovers") || lowerUrl.includes("seriouseats.com")) {
+    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
+  }
+  if (lowerUrl.includes("travelnow.com") || lowerUrl.includes("nomadicmatt.com") || lowerUrl.includes("adventure.com")) {
+    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
+  }
+  if (lowerUrl.includes("wellness.com") || lowerUrl.includes("fitlife.com") || lowerUrl.includes("healthline.com")) {
+    return "Health and wellness are the foundation of a fulfilling life. Building healthy habits, managing stress, and staying active empower individuals to achieve well-being and long-term happiness.";
+  }
+  if (lowerUrl.includes("news")) {
+    return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
+  }
+  if (lowerUrl.includes("tech")) {
+    return "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.";
+  }
+  if (lowerUrl.includes("food")) {
+    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
+  }
+  if (lowerUrl.includes("travel")) {
+    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
+  }
+  if (lowerUrl.includes("health")) {
     return "Health and wellness are the foundation of a fulfilling life. Building healthy habits, managing stress, and staying active empower individuals to achieve well-being and long-term happiness.";
   }
   return "Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.";
@@ -183,7 +205,7 @@ export default function Home() {
     const scraped = fakeScrape(url);
     setFullText(scraped);
     // Simulate summary
-    const sum = fakeSummary(scraped);
+    const sum = fakeSummary(scraped, url);
     setSummary(sum);
     // Translate
     const urduSum = translateToUrdu(sum);
