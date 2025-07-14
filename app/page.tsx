@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles, Copy, Check } from "lucide-react";
+import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles, Copy, Check, Volume2 } from "lucide-react";
+import AuthForm from "../components/AuthForm";
+import { useSession } from '@supabase/auth-helpers-react';
 
 function fakeScrape(url: string): string {
   const lowerUrl = url.toLowerCase();
@@ -61,6 +63,22 @@ function translateToUrdu(text: string): string {
   }
 }
 
+function speakText(text: string, lang: string) {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  const utterance = new window.SpeechSynthesisUtterance(text);
+  utterance.lang = lang;
+  const voices = window.speechSynthesis.getVoices();
+  let match = voices.find(v => v.lang.toLowerCase().startsWith(lang));
+  if (!match && lang === 'ur') {
+    // Try Hindi or Arabic as fallback
+    match = voices.find(v => v.lang.toLowerCase().startsWith('hi')) ||
+            voices.find(v => v.lang.toLowerCase().startsWith('ar'));
+  }
+  if (match) utterance.voice = match;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
+
 export default function Home() {
   const [url, setUrl] = useState("");
   const [fullText, setFullText] = useState("");
@@ -70,11 +88,36 @@ export default function Home() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState<{ type: 'en' | 'ur' | null }>({ type: null });
+  // Remove urduEdited and handlers for editing
+
+  const session = useSession();
+  const [guest, setGuest] = useState(false);
+
+  if (!session && !guest) {
+    return (
+      <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 min-h-screen">
+        <div className="w-full max-w-md bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 backdrop-blur-md flex flex-col items-center">
+          <h1 className="text-2xl font-bold mb-6 text-center">Welcome to Blog Summariser</h1>
+          <AuthForm />
+          <div className="my-4 text-gray-500 text-sm">or</div>
+          <button
+            onClick={() => setGuest(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500 to-lime-500 text-white font-semibold shadow hover:from-emerald-600 hover:to-lime-600 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            aria-label="Try as Guest"
+            type="button"
+          >
+            Try as Guest
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
+    // Remove setUrduEdited
     // Simulate scraping
     const scraped = fakeScrape(url);
     setFullText(scraped);
@@ -130,13 +173,16 @@ export default function Home() {
     setTimeout(() => setCopied({ type: null }), 1200);
   };
 
+  // Remove handleSummaryChange and handleUrduChange
+
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Overlay for focus */}
       <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
       {/* Centered content */}
-      <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-0">
-        <div className="w-full max-w-lg min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8 backdrop-blur-md flex flex-col items-center">
+      <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+        <AuthForm />
+        <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 backdrop-blur-md flex flex-col items-center">
           {/* Logo/Avatar */}
           <div className="flex items-center justify-center mb-4">
             <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
@@ -168,8 +214,10 @@ export default function Home() {
             </button>
           </form>
           {message && (
-            <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in w-full ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-              {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" /> : <AlertCircle className="w-5 h-5 text-red-600" />} {message}
+            <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in w-full ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+              aria-live="polite"
+            >
+              {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" /> : <AlertCircle className="w-5 h-5 text-red-600" aria-hidden="true" />} {message}
             </div>
           )}
           {summary && (
@@ -179,11 +227,19 @@ export default function Home() {
                 <h2 className="font-semibold">Summary (English):</h2>
                 <button
                   onClick={() => handleCopy(summary, 'en')}
-                  className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 transition"
+                  className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                   aria-label="Copy English summary"
                   type="button"
                 >
-                  {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+                  {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                </button>
+                <button
+                  onClick={() => speakText(summary, 'en')}
+                  className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                  aria-label="Listen to English summary"
+                  type="button"
+                >
+                  <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
                 </button>
               </div>
               <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
@@ -196,11 +252,11 @@ export default function Home() {
                 <h2 className="font-semibold">Summary (Urdu):</h2>
                 <button
                   onClick={() => handleCopy(urdu, 'ur')}
-                  className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 transition"
+                  className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
                   aria-label="Copy Urdu summary"
                   type="button"
                 >
-                  {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+                  {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
                 </button>
               </div>
               <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
