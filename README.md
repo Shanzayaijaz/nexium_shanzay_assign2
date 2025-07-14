@@ -1,7 +1,7 @@
 # Blog Summariser
 
 A visually appealing Next.js app to summarise blog articles, translate summaries to Urdu, and save results to Supabase and MongoDB. Styled with Tailwind CSS and ShadCN-inspired UI.
-
+**Live Demo**: [https://blogsummariser.vercel.app](https://blogsummariser.vercel.app)
 ## Features
 - Input a blog URL and simulate scraping the text
 - Generate an AI-like summary (static logic)
@@ -72,7 +72,3 @@ A visually appealing Next.js app to summarise blog articles, translate summaries
 - UI inspired by [ShadCN UI](https://ui.shadcn.com/)
 - Icons from [lucide.dev](https://lucide.dev/)
 
----
-
-**Enjoy summarising blogs with style!**
->>>>>>> 0448801 (local changes before pull)
