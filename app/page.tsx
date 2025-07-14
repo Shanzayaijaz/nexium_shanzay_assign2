@@ -6,20 +6,82 @@ import { useSession } from '@supabase/auth-helpers-react';
 
 function fakeScrape(url: string): string {
   const lowerUrl = url.toLowerCase();
-  if (lowerUrl.includes("tech")) {
-    return `Technology is evolving at a rapid pace, transforming the way we live, work, and connect. In recent years, artificial intelligence and robotics have moved from science fiction to everyday reality, powering everything from smart assistants to automated factories.\n\nOne of the most exciting breakthroughs is in machine learning, which enables computers to learn from data and improve over time. This has led to smarter devices, personalized recommendations, and even self-driving cars.\n\nThe tech industry continues to innovate, with startups and giants alike racing to develop the next big thing. As we look to the future, it's clear that technology will play an even greater role in shaping society, raising important questions about ethics, privacy, and the human experience.`;
+  if (lowerUrl.includes("techcrunch.com")) {
+    return `TechCrunch is a leading technology media property, dedicated to obsessively profiling startups, reviewing new Internet products, and breaking tech news. From Silicon Valley to global innovation hubs, TechCrunch covers the latest in technology, venture capital, and entrepreneurship.
+
+In recent years, the startup ecosystem has seen unprecedented growth, with new companies disrupting traditional industries at a rapid pace. Investors are pouring billions into AI, fintech, and green tech, betting on the next wave of innovation. TechCrunch’s reporters are on the ground at major conferences, interviewing founders and analyzing trends that shape the future of technology.
+
+Whether it’s a deep dive into a unicorn’s journey, a review of the latest gadgets, or an exposé on industry challenges, TechCrunch delivers the stories that matter to tech professionals and enthusiasts alike.`;
   }
-  if (lowerUrl.includes("news")) {
-    return `Breaking news: Major events are unfolding around the world, capturing the attention of millions. From political shifts to scientific discoveries, the news landscape is constantly changing.\n\nOur team of experts provides in-depth analysis and insights on the latest developments, helping readers make sense of complex issues. Whether it's a global summit, a natural disaster, or a breakthrough in medicine, we bring you the most important stories as they happen.\n\nStay informed with our comprehensive coverage, exclusive interviews, and real-time updates. In a world where information moves fast, we help you stay ahead.`;
+  if (lowerUrl.includes("theverge.com")) {
+    return `The Verge explores how technology changes life in the future for a massive mainstream audience. With in-depth reporting, feature stories, and community content, The Verge covers the intersection of technology, science, art, and culture.
+
+From the latest smartphone launches to the evolution of electric vehicles, The Verge’s team brings clarity to complex topics. Their long-form articles and video content break down how new inventions impact society, influence pop culture, and shape our digital lives.
+
+Readers can find reviews, opinion pieces, and interviews with industry leaders, making The Verge a destination for anyone curious about the future of technology and its role in our world.`;
   }
-  if (lowerUrl.includes("food")) {
-    return `Food lovers rejoice! Discover delicious recipes, culinary tips, and the stories behind your favorite dishes. From street food to gourmet meals, our blog explores the world of flavors and the cultures that inspire them.\n\nCooking at home has never been more exciting, with new ingredients and fusion cuisines sparking creativity in kitchens everywhere. We share step-by-step guides, chef interviews, and food photography that will make your mouth water.\n\nJoin us as we celebrate food culture, explore hidden gems, and connect with fellow foodies from around the globe.`;
+  if (lowerUrl.includes("bbc.com")) {
+    return `BBC News brings you trusted world and UK news as well as local and regional perspectives. Stay up to date with the latest breaking news, analysis, and reports from around the globe.
+
+With correspondents in every major city, BBC News provides live updates on politics, science, health, and culture. Their investigative journalism uncovers stories that shape public opinion and policy, while their features offer context and background to the headlines.
+
+From live coverage of elections to in-depth documentaries on global issues, BBC News is committed to impartial, accurate, and timely reporting for a worldwide audience.`;
   }
-  if (lowerUrl.includes("travel")) {
-    return `Travel the globe with us as we uncover hidden gems, share travel tips, and tell inspiring stories from adventurers. Whether you're planning a weekend getaway or a round-the-world journey, our guides help you make the most of every destination.\n\nExperience the beauty and diversity of cultures worldwide, from bustling cities to tranquil nature escapes. Our blog features destination reviews, packing lists, and personal anecdotes that bring each place to life.\n\nYour next journey awaits—let us help you discover it!`;
+  if (lowerUrl.includes("cnn.com")) {
+    return `CNN is a global leader in news, providing up-to-the-minute coverage of breaking events, in-depth analysis, and exclusive interviews from around the world.
+
+Their newsrooms operate 24/7, delivering live reports on politics, business, health, and entertainment. CNN’s team of journalists and experts offer perspectives on the stories that matter, from natural disasters to scientific breakthroughs.
+
+Special segments and investigative reports give viewers a deeper understanding of complex issues, making CNN a trusted source for news and information.`;
   }
-  if (lowerUrl.includes("health")) {
-    return `Health and wellness are essential for a happy, fulfilling life. Our blog covers nutrition, exercise, mental well-being, and the latest research in health science.\n\nOur experts share advice on building healthy habits, managing stress, and staying active in a busy world. We believe that small changes can make a big difference, and we're here to support you every step of the way.\n\nStart your health journey today with our tips, recipes, and motivational stories from people who have transformed their lives.`;
+  if (lowerUrl.includes("seriouseats.com")) {
+    return `Serious Eats is a haven for food lovers, offering expert recipes, cooking tips, and food science insights. Since 2006, it has inspired millions with in-depth guides, world cuisines, and the latest trends in the culinary world.
+
+Each week, Serious Eats features new recipes tested to perfection, from classic comfort foods to innovative fusion dishes. Their writers dive into the science behind cooking, explaining why certain techniques work and how to get the best results at home.
+
+Beyond recipes, Serious Eats explores food culture, interviews chefs, and reviews kitchen equipment, making it a comprehensive resource for anyone passionate about cooking and eating well.`;
+  }
+  if (lowerUrl.includes("foodie.com")) {
+    return `Foodie celebrates the joy of cooking and eating, sharing creative recipes, food stories, and culinary adventures from around the world. Discover new flavors and connect with a community of fellow food enthusiasts.
+
+Recent posts include step-by-step guides to mastering sourdough bread, explorations of street food in Asia, and personal essays on the memories tied to family recipes. Foodie’s vibrant photography and approachable writing make every dish feel accessible, no matter your skill level.
+
+Join Foodie to swap tips, share your own creations, and be inspired by a global community that loves to cook and eat.`;
+  }
+  if (lowerUrl.includes("nomadicmatt.com")) {
+    return `Nomadic Matt helps travelers explore the world on a budget, offering practical tips, destination guides, and inspiring stories from years of adventure.
+
+Matt’s blog is filled with detailed itineraries, advice on finding cheap flights and accommodation, and honest reviews of destinations from Southeast Asia to South America. His travel philosophy centers on meaningful experiences, cultural immersion, and making travel accessible to everyone.
+
+Readers can find interviews with fellow travelers, resources for digital nomads, and motivational stories that encourage people to step out of their comfort zones and see the world.`;
+  }
+  if (lowerUrl.includes("travelnow.com")) {
+    return `Travel Now brings you the latest travel news, destination guides, and tips for making the most of your journeys. Discover hidden gems and plan your next adventure with expert advice.
+
+Their writers cover everything from eco-friendly travel trends to must-see attractions in major cities. Travel Now’s guides include packing lists, safety tips, and recommendations for food, lodging, and activities.
+
+Whether you’re a seasoned globetrotter or planning your first trip, Travel Now offers inspiration and practical information to help you travel smarter and more confidently.`;
+  }
+  if (lowerUrl.includes("healthline.com")) {
+    return `Healthline provides trusted health information, expert advice, and the latest research to help you live a healthier, happier life.
+
+Their articles cover nutrition, fitness, mental health, and medical news, all reviewed by professionals for accuracy. Healthline’s guides break down complex health topics into actionable steps, empowering readers to make informed decisions.
+
+From healthy recipes to wellness trends and personal stories, Healthline is a comprehensive resource for anyone seeking to improve their well-being.`;
+  }
+  if (lowerUrl.includes("wellness.com")) {
+    return `Wellness is your guide to a balanced life, offering tips on nutrition, fitness, mental health, and holistic well-being.
+
+Recent features include mindfulness exercises, plant-based meal plans, and interviews with wellness experts. Wellness encourages readers to find harmony in their routines and prioritize self-care.
+
+With a focus on sustainable habits and positive lifestyle changes, Wellness supports your journey to a healthier, happier you.`;
+  }
+  if (lowerUrl.includes("fitlife.com")) {
+    return `FitLife motivates you to achieve your fitness goals with workout plans, healthy recipes, and wellness tips for every stage of your journey.
+
+Their blog features beginner to advanced workout routines, advice on building strength and endurance, and nutrition guides for optimal performance. FitLife’s community shares success stories and challenges to keep you inspired.
+
+Whether you’re training for a marathon or just starting out, FitLife provides the tools and encouragement you need to live your healthiest life.`;
   }
   // Default generic blog
   return `Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.\n\nOur mission is to inform, inspire, and connect readers from all walks of life. Stay connected for more insightful articles and join our community of curious minds.`;
@@ -27,11 +89,44 @@ function fakeScrape(url: string): string {
 
 function fakeSummary(text: string, url: string): string {
   const lowerUrl = url.toLowerCase();
-  if (lowerUrl.includes("nomadicmatt.com")) {
-    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
+  if (lowerUrl.includes("techcrunch.com")) {
+    return "TechCrunch delivers breaking news and in-depth analysis on startups, technology, and innovation, making it a go-to source for tech enthusiasts and professionals.";
+  }
+  if (lowerUrl.includes("theverge.com")) {
+    return "The Verge provides insightful coverage of technology, science, and culture, highlighting how innovation shapes our world.";
+  }
+  if (lowerUrl.includes("bbc.com")) {
+    return "BBC News offers comprehensive and reliable news coverage, delivering the latest updates and analysis on global events.";
+  }
+  if (lowerUrl.includes("cnn.com")) {
+    return "CNN delivers real-time news, expert analysis, and exclusive stories, keeping audiences informed on major world events.";
   }
   if (lowerUrl.includes("seriouseats.com")) {
-    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
+    return "Serious Eats is a leading food website offering expert recipes, cooking tips, and food science insights for passionate cooks.";
+  }
+  if (lowerUrl.includes("foodie.com")) {
+    return "Foodie inspires creativity in the kitchen with diverse recipes and stories, connecting food lovers everywhere.";
+  }
+  if (lowerUrl.includes("nomadicmatt.com")) {
+    return "Nomadic Matt empowers travelers with budget tips, destination advice, and inspiration for exploring the world.";
+  }
+  if (lowerUrl.includes("travelnow.com")) {
+    return "Travel Now offers up-to-date travel news, guides, and tips to help you plan unforgettable trips.";
+  }
+  if (lowerUrl.includes("healthline.com")) {
+    return "Healthline delivers reliable health information and expert guidance for well-being and healthy living.";
+  }
+  if (lowerUrl.includes("wellness.com")) {
+    return "Wellness supports a balanced lifestyle with advice on nutrition, fitness, and mental health.";
+  }
+  if (lowerUrl.includes("fitlife.com")) {
+    return "FitLife inspires healthy living with fitness routines, nutritious recipes, and wellness advice.";
+  }
+  if (lowerUrl.includes("seriouseats.com")) {
+    return "Serious Eats is a leading food website offering expert recipes, cooking tips, and food science insights. Since 2006, it has inspired millions of food lovers with in-depth guides, world cuisines, and the latest trends in the culinary world.";
+  }
+  if (lowerUrl.includes("nomadicmatt.com")) {
+    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
   }
   if (lowerUrl.includes("cnn.com") || lowerUrl.includes("bbc.com") || lowerUrl.includes("newsportal.com")) {
     return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
@@ -263,7 +358,7 @@ export default function Home() {
       {/* Overlay for focus */}
       <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
       {/* Classy header */}
-      <header className="w-full flex flex-col items-center justify-center py-8 mb-2 z-30 relative">
+      <header className="w-full flex flex-col items-center justify-center py-4 mb-0 z-30 relative">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
           <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 shadow-lg animate-fade-in">
             <Sparkles className="w-8 h-8 text-white" />
@@ -316,9 +411,9 @@ export default function Home() {
         <main className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 w-full">
           <AuthForm />
           {/* Main card */}
-          <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-0 bg-white/95 dark:bg-gray-800/95 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-12 backdrop-blur-md flex flex-col items-center animate-fade-in">
+          <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-0 bg-white/95 dark:bg-gray-800/95 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-6 backdrop-blur-md flex flex-col items-center animate-fade-in mt-2">
             {/* Divider */}
-            <div className="w-full flex justify-center my-6">
+            <div className="w-full flex justify-center my-2">
               <span className="inline-block w-24 h-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 rounded-full opacity-70"></span>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full mb-6">
