@@ -186,143 +186,148 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Sidebar for example blogs (desktop) */}
-      <aside className="hidden lg:block fixed left-0 top-0 h-full p-8 z-20">
-        <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-4 w-64">
-          <h3 className="font-bold mb-2">Try these example blogs:</h3>
-          <ul className="space-y-2 text-sm">
-            {exampleBlogs.map((ex) => (
-              <li key={ex.url}>
-                <button
-                  onClick={() => setUrl(ex.url)}
-                  className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
-                  type="button"
-                >
-                  {ex.label}: {ex.url.replace(/^https?:\/\//, "")}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </aside>
-      {/* Main content */}
-      <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32">
-        {/* Example blogs for mobile (below input) */}
-        <div className="block lg:hidden w-full max-w-xl mx-auto mb-4">
-          <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-3">
-            <h3 className="font-bold mb-2 text-sm">Try these example blogs:</h3>
-            <div className="flex flex-wrap gap-2">
+      {/* Overlay for focus */}
+      <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
+      {/* Responsive flex row for sidebar and main content */}
+      <div className="flex flex-1 flex-col lg:flex-row items-stretch justify-center z-10 w-full min-h-screen">
+        {/* Sidebar for example blogs (desktop) */}
+        <aside className="hidden lg:flex flex-col justify-center items-end flex-shrink-0 w-72 px-8">
+          <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-4 w-full max-w-xs">
+            <h3 className="font-bold mb-2">Try these example blogs:</h3>
+            <ul className="space-y-2 text-sm">
               {exampleBlogs.map((ex) => (
-                <button
-                  key={ex.url}
-                  onClick={() => setUrl(ex.url)}
-                  className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 text-xs"
-                  type="button"
-                >
-                  {ex.label}
-                </button>
+                <li key={ex.url}>
+                  <button
+                    onClick={() => setUrl(ex.url)}
+                    className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
+                    type="button"
+                  >
+                    {ex.label}: {ex.url.replace(/^https?:\/\//, "")}
+                  </button>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </div>
-        <AuthForm />
-        <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 backdrop-blur-md flex flex-col items-center">
-          {/* Logo/Avatar */}
-          <div className="flex items-center justify-center mb-4">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
-              <Sparkles className="w-8 h-8 text-white" />
-            </span>
-          </div>
-          <h1 className="text-3xl font-extrabold mb-1 text-center tracking-tight text-gray-900 dark:text-white flex items-center justify-center gap-2">
-            Blog Summariser
-          </h1>
-          <div className="flex justify-center mb-6">
-            <span className="inline-block w-16 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full"></span>
-          </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full mb-6">
-            <input
-              type="url"
-              required
-              placeholder="Enter blog URL..."
-              className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white transition"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
-              disabled={loading}
-            >
-              <FileText className="w-5 h-5" />
-              {loading ? "Summarising..." : "Summarise"}
-            </button>
-          </form>
-          {message && (
-            <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in w-full ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
-              aria-live="polite"
-            >
-              {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" /> : <AlertCircle className="w-5 h-5 text-red-600" aria-hidden="true" />} {message}
-            </div>
-          )}
-          {summary && (
-            <div className="mb-4 w-full animate-fade-in">
-              <div className="flex items-center gap-2 mb-1">
-                <FileText className="w-5 h-5 text-blue-500" />
-                <h2 className="font-semibold">Summary (English):</h2>
-                <button
-                  onClick={() => handleCopy(summary, 'en')}
-                  className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                  aria-label="Copy English summary"
-                  type="button"
-                >
-                  {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                </button>
-                <button
-                  onClick={() => speakText(summary, 'en')}
-                  className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                  aria-label="Listen to English summary"
-                  type="button"
-                >
-                  <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
-                </button>
+        </aside>
+        {/* Main content */}
+        <main className="flex flex-1 flex-col items-center justify-center px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 w-full">
+          {/* Example blogs for mobile (above input) */}
+          <div className="block lg:hidden w-full max-w-xl mx-auto mb-4">
+            <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-3">
+              <h3 className="font-bold mb-2 text-sm">Try these example blogs:</h3>
+              <div className="flex flex-wrap gap-2">
+                {exampleBlogs.map((ex) => (
+                  <button
+                    key={ex.url}
+                    onClick={() => setUrl(ex.url)}
+                    className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 text-xs"
+                    type="button"
+                  >
+                    {ex.label}
+                  </button>
+                ))}
               </div>
-              <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
             </div>
-          )}
-          {urdu && (
-            <div className="mb-4 w-full animate-fade-in">
-              <div className="flex items-center gap-2 mb-1">
-                <Languages className="w-5 h-5 text-pink-500" />
-                <h2 className="font-semibold">Summary (Urdu):</h2>
-                <button
-                  onClick={() => handleCopy(urdu, 'ur')}
-                  className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
-                  aria-label="Copy Urdu summary"
-                  type="button"
-                >
-                  {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                </button>
+          </div>
+          <AuthForm />
+          <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 backdrop-blur-md flex flex-col items-center">
+            {/* Logo/Avatar */}
+            <div className="flex items-center justify-center mb-4">
+              <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg">
+                <Sparkles className="w-8 h-8 text-white" />
+              </span>
+            </div>
+            <h1 className="text-3xl font-extrabold mb-1 text-center tracking-tight text-gray-900 dark:text-white flex items-center justify-center gap-2">
+              Blog Summariser
+            </h1>
+            <div className="flex justify-center mb-6">
+              <span className="inline-block w-16 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full"></span>
+            </div>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full mb-6">
+              <input
+                type="url"
+                required
+                placeholder="Enter blog URL..."
+                className="border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:text-white transition"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
+                disabled={loading}
+              >
+                <FileText className="w-5 h-5" />
+                {loading ? "Summarising..." : "Summarise"}
+              </button>
+            </form>
+            {message && (
+              <div className={`mb-4 p-3 rounded-lg flex items-center gap-2 animate-fade-in w-full ${message.includes('✅') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+                aria-live="polite"
+              >
+                {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" /> : <AlertCircle className="w-5 h-5 text-red-600" aria-hidden="true" />} {message}
               </div>
-              <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
-            </div>
-          )}
-          {fullText && (
-            <details className="mt-4 w-full animate-fade-in">
-              <summary className="cursor-pointer font-semibold flex items-center gap-2"><Globe className="w-5 h-5 text-purple-500" /> Show Full Blog Text</summary>
-              <p className="mt-2 text-sm bg-emerald-50 dark:bg-emerald-900 rounded-lg p-3 border dark:border-gray-700 shadow-inner transition">{fullText}</p>
-            </details>
-          )}
-          {summary && urdu && fullText && (
-            <button
-              onClick={handleSave}
-              disabled={saving}
-              className="mt-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-green-700 hover:to-emerald-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 w-full"
-            >
-              <Save className="w-5 h-5" /> {saving ? "Saving..." : "Save to Database"}
-            </button>
-          )}
-        </div>
-      </main>
+            )}
+            {summary && (
+              <div className="mb-4 w-full animate-fade-in">
+                <div className="flex items-center gap-2 mb-1">
+                  <FileText className="w-5 h-5 text-blue-500" />
+                  <h2 className="font-semibold">Summary (English):</h2>
+                  <button
+                    onClick={() => handleCopy(summary, 'en')}
+                    className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    aria-label="Copy English summary"
+                    type="button"
+                  >
+                    {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                  </button>
+                  <button
+                    onClick={() => speakText(summary, 'en')}
+                    className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    aria-label="Listen to English summary"
+                    type="button"
+                  >
+                    <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
+                  </button>
+                </div>
+                <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
+              </div>
+            )}
+            {urdu && (
+              <div className="mb-4 w-full animate-fade-in">
+                <div className="flex items-center gap-2 mb-1">
+                  <Languages className="w-5 h-5 text-pink-500" />
+                  <h2 className="font-semibold">Summary (Urdu):</h2>
+                  <button
+                    onClick={() => handleCopy(urdu, 'ur')}
+                    className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                    aria-label="Copy Urdu summary"
+                    type="button"
+                  >
+                    {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                  </button>
+                </div>
+                <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
+              </div>
+            )}
+            {fullText && (
+              <details className="mt-4 w-full animate-fade-in">
+                <summary className="cursor-pointer font-semibold flex items-center gap-2"><Globe className="w-5 h-5 text-purple-500" /> Show Full Blog Text</summary>
+                <p className="mt-2 text-sm bg-emerald-50 dark:bg-emerald-900 rounded-lg p-3 border dark:border-gray-700 shadow-inner transition">{fullText}</p>
+              </details>
+            )}
+            {summary && urdu && fullText && (
+              <button
+                onClick={handleSave}
+                disabled={saving}
+                className="mt-6 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-lg px-4 py-2 font-semibold shadow hover:from-green-700 hover:to-emerald-600 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 w-full"
+              >
+                <Save className="w-5 h-5" /> {saving ? "Saving..." : "Save to Database"}
+              </button>
+            )}
+          </div>
+        </main>
+      </div>
       <footer className="w-full py-6 text-gray-500 text-xs text-center mt-auto z-10">
         &copy; {new Date().getFullYear()} Blog Summariser
       </footer>
