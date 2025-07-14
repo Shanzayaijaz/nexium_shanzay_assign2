@@ -93,6 +93,15 @@ export default function Home() {
   const session = useSession();
   const [guest, setGuest] = useState(false);
 
+  // Example blog URLs
+  const exampleBlogs = [
+    { label: "Tech", url: "https://example.com/tech-latest" },
+    { label: "News", url: "https://newsportal.com/breaking-news" },
+    { label: "Food", url: "https://foodie.com/recipes" },
+    { label: "Travel", url: "https://travelnow.com/destinations" },
+    { label: "Health", url: "https://wellness.com/health-tips" },
+  ];
+
   if (!session && !guest) {
     return (
       <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32 min-h-screen">
@@ -177,10 +186,45 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Overlay for focus */}
-      <div className="absolute inset-0 bg-black/10 dark:bg-black/30 pointer-events-none z-0" />
-      {/* Centered content */}
+      {/* Sidebar for example blogs (desktop) */}
+      <aside className="hidden lg:block fixed left-0 top-0 h-full p-8 z-20">
+        <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-4 w-64">
+          <h3 className="font-bold mb-2">Try these example blogs:</h3>
+          <ul className="space-y-2 text-sm">
+            {exampleBlogs.map((ex) => (
+              <li key={ex.url}>
+                <button
+                  onClick={() => setUrl(ex.url)}
+                  className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1"
+                  type="button"
+                >
+                  {ex.label}: {ex.url.replace(/^https?:\/\//, "")}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+      {/* Main content */}
       <main className="flex flex-1 flex-col items-center justify-center z-10 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+        {/* Example blogs for mobile (below input) */}
+        <div className="block lg:hidden w-full max-w-xl mx-auto mb-4">
+          <div className="bg-white/90 dark:bg-gray-800/90 rounded-xl shadow p-3">
+            <h3 className="font-bold mb-2 text-sm">Try these example blogs:</h3>
+            <div className="flex flex-wrap gap-2">
+              {exampleBlogs.map((ex) => (
+                <button
+                  key={ex.url}
+                  onClick={() => setUrl(ex.url)}
+                  className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-1 text-xs"
+                  type="button"
+                >
+                  {ex.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
         <AuthForm />
         <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl min-w-[320px] bg-white/90 dark:bg-gray-800/90 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 backdrop-blur-md flex flex-col items-center">
           {/* Logo/Avatar */}
