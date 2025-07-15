@@ -34,6 +34,18 @@ Their newsrooms operate 24/7, delivering live reports on politics, business, hea
 
 Special segments and investigative reports give viewers a deeper understanding of complex issues, making CNN a trusted source for news and information.`;
   }
+<<<<<<< HEAD
+=======
+  if (lowerUrl.includes("newsportal.com")) {
+    return `News Portal is your gateway to the world's most important stories, delivering breaking news and in-depth analysis from every corner of the globe.
+
+With a dedicated team of journalists stationed in major cities, News Portal provides real-time updates on politics, science, health, business, and technology. Their correspondents report live from the scene of major events, offering eyewitness accounts and expert commentary that help readers understand the impact of global developments.
+
+In addition to headline news, News Portal features investigative reports that uncover the stories behind the headlines, interviews with key figures shaping current affairs, and special segments that explore trends in society, culture, and innovation.
+
+Whether you're following election coverage, tracking scientific breakthroughs, or seeking insights into economic trends, News Portal keeps you informed with accurate, timely, and comprehensive reporting. Join a global community of readers who rely on News Portal to stay ahead in a rapidly changing world.`;
+  }
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
   if (lowerUrl.includes("seriouseats.com")) {
     return `Serious Eats is a haven for food lovers, offering expert recipes, cooking tips, and food science insights. Since 2006, it has inspired millions with in-depth guides, world cuisines, and the latest trends in the culinary world.
 
@@ -41,6 +53,16 @@ Each week, Serious Eats features new recipes tested to perfection, from classic 
 
 Beyond recipes, Serious Eats explores food culture, interviews chefs, and reviews kitchen equipment, making it a comprehensive resource for anyone passionate about cooking and eating well.`;
   }
+<<<<<<< HEAD
+=======
+  if (lowerUrl.includes("blog.com/food-lovers")) {
+    return `Food Lovers is a vibrant blog dedicated to celebrating the joy of cooking and eating. Here, you’ll discover creative recipes from around the world, step-by-step guides for both beginners and seasoned cooks, and inspiring food stories that connect cultures and generations.
+
+Each week, Food Lovers features new culinary adventures, from exploring street food in Asia to mastering classic French pastries at home. The blog’s writers share personal essays about the memories tied to family recipes, interviews with renowned chefs, and tips for sourcing the freshest ingredients.
+
+With stunning food photography and approachable writing, Food Lovers makes every dish feel accessible and exciting. Join a global community of passionate cooks and foodies—swap tips, share your own creations, and be inspired to try something new in the kitchen every day.`;
+  }
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
   if (lowerUrl.includes("foodie.com")) {
     return `Foodie celebrates the joy of cooking and eating, sharing creative recipes, food stories, and culinary adventures from around the world. Discover new flavors and connect with a community of fellow food enthusiasts.
 
@@ -83,10 +105,21 @@ Their blog features beginner to advanced workout routines, advice on building st
 
 Whether you’re training for a marathon or just starting out, FitLife provides the tools and encouragement you need to live your healthiest life.`;
   }
+<<<<<<< HEAD
+=======
+  if (lowerUrl.includes("adventure.com/travel-tips")) {
+    return `Adventure.com’s travel tips blog is a treasure trove for explorers and thrill-seekers. The site offers practical advice for planning adventures, from choosing the right gear and packing efficiently to staying safe in remote destinations. Readers will find destination guides, personal travel stories, and expert tips on sustainable and responsible travel.
+
+Adventure.com features interviews with seasoned travelers, recommendations for off-the-beaten-path experiences, and inspiration for both solo and group journeys. Whether you’re looking to hike mountain trails, discover hidden beaches, or immerse yourself in new cultures, the blog provides the insights and motivation you need to make every trip unforgettable.
+
+With a focus on adventure, discovery, and personal growth, Adventure.com’s travel tips help you step out of your comfort zone and embrace the world with confidence.`;
+  }
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
   // Default generic blog
   return `Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.\n\nOur mission is to inform, inspire, and connect readers from all walks of life. Stay connected for more insightful articles and join our community of curious minds.`;
 }
 
+<<<<<<< HEAD
 function fakeSummary(text: string, url: string): string {
   const lowerUrl = url.toLowerCase();
   if (lowerUrl.includes("techcrunch.com")) {
@@ -178,6 +211,54 @@ function translateToUrdu(text: string): string {
     default:
       return text; 
   }
+=======
+function translateToUrdu(url: string): string {
+  const lowerUrl = url.toLowerCase();
+  if (lowerUrl.includes("techcrunch.com")) {
+    return "ٹیک کرنچ (TechCrunch) ایک معروف ٹیکنالوجی میڈیا پلیٹ فارم ہے جو اسٹارٹ اپس کی پروفائلنگ میں مہارت رکھتا ہے۔ سلیکن ویلی سے لے کر عالمی انوویشن ہبز تک، ٹیک کرنچ ٹیکنالوجی، وینچر کیپیٹل، اور انٹرپرینیورشپ کی تازہ ترین خبریں فراہم کرتا ہے۔ حالیہ برسوں میں، اسٹارٹ اپ ایکو سسٹم میں بے مثال ترقی ہوئی ہے، جہاں نئی کمپنیاں روایتی صنعتوں کو تیزی سے بدل رہی ہیں۔";
+  }
+  if (lowerUrl.includes("theverge.com")) {
+    return "دی ورج (The Verge) ٹیکنالوجی، سائنس، آرٹ اور ثقافت کے ملاپ پر روشنی ڈالتا ہے۔ ان کے طویل مضامین اور ویڈیو مواد یہ واضح کرتے ہیں کہ نئی ایجادات پاپ کلچر کو کیسے متاثر کرتی ہیں۔ دی ورج ان لوگوں کے لیے ایک بہترین ذریعہ ہے جو ٹیکنالوجی کے مستقبل اور ہماری زندگیوں میں اس کے کردار کے بارے میں جاننا چاہتے ہیں۔ مزید معلومات کے لیے دی ورج کی ویب سائٹ ملاحظہ کریں۔";
+  }
+  if (lowerUrl.includes("bbc.com")) {
+    return "بی بی سی نیوز آپ کو دنیا اور برطانیہ کی معتبر خبریں فراہم کرتا ہے، ساتھ ہی مقامی اور علاقائی نقطہ نظر بھی پیش کرتا ہے۔ ہر بڑے شہر میں نمائندوں کے ساتھ، بی بی سی نیوز سیاست، سائنس، صحت اور ثقافت پر براہ راست اپ ڈیٹس فراہم کرتا ہے۔ ان کی تحقیقی صحافت وہ کہانیاں سامنے لاتی ہے جو عوامی رائے اور پالیسی کو تشکیل دیتی ہیں، جبکہ ان کی فیچرز سرخیوں کے پس منظر اور سیاق و سباق کو اجاگر کرتی ہیں۔";
+  }
+  if (lowerUrl.includes("cnn.com")) {
+    return "سی این این (CNN) خبروں میں عالمی رہنما ہے، جو تازہ ترین واقعات کی لمحہ بہ لمحہ کوریج فراہم کرتا ہے۔ ان کے نیوز رومز چوبیس گھنٹے کام کرتے ہیں، اور سیاست، کاروبار، صحت اور تفریح پر براہ راست رپورٹس پیش کرتے ہیں۔ خصوصی سیگمنٹس اور تحقیقی رپورٹس ناظرین کو پیچیدہ مسائل کی گہری سمجھ فراہم کرتی ہیں۔";
+  }
+  if (lowerUrl.includes("newsportal.com")) {
+    return "نیوز پورٹل سیاست، سائنس، صحت، کاروبار اور ٹیکنالوجی پر بروقت اپ ڈیٹس فراہم کرتا ہے۔ سرخیوں کے علاوہ، نیوز پورٹل تحقیقاتی رپورٹس بھی پیش کرتا ہے جو خبروں کے پیچھے چھپی کہانیاں سامنے لاتی ہیں۔ تیزی سے بدلتی ہوئی دنیا میں باخبر رہنے کے لیے نیوز پورٹل پر بھروسہ کرنے والے قارئین کی عالمی کمیونٹی میں شامل ہوں۔";
+  }
+  if (lowerUrl.includes("seriouseats.com")) {
+    return "ہر ہفتے، سیریئس ایٹس بہترین طریقے سے آزمائے گئے نئے پکوانوں کی تراکیب پیش کرتا ہے۔ ان کے لکھاری کھانا پکانے کے پیچھے سائنس کی وضاحت کرتے ہیں، کہ کون سی تکنیک کیوں کام کرتی ہے اور بہترین نتائج کیسے حاصل کیے جائیں۔ تراکیب کے علاوہ، یہ ویب سائٹ کھانے کی ثقافت، شیفس کے انٹرویوز، اور کچن کے سامان کے جائزے بھی پیش کرتی ہے۔";
+  }
+  if (lowerUrl.includes("blog.com/food-lovers")) {
+    return "فوڈ لوورز ایک بلاگ ہے جو کھانا پکانے اور کھانے کی خوشی کو منانے کے لیے وقف ہے۔ ہر ہفتے، فوڈ لوورز میں نئی ذائقہ دار مہمات پیش کی جاتی ہیں، جن میں ایشیا کے اسٹریٹ فوڈ سے لے کر گھر پر کلاسیکی فرانسیسی پیسٹری بنانے تک سب کچھ شامل ہے۔ اس بلاگ کے لکھاری ذاتی کہانیاں شیئر کرتے ہیں جو خاندانی تراکیب سے جڑی یادوں اور مشہور شیفس کے انٹرویوز پر مبنی ہوتی ہیں۔";
+  }
+  if (lowerUrl.includes("foodie.com")) {
+    return "فوڈی (Foodie) کھانا پکانے اور کھانے کی خوشی کو مناتا ہے، تخلیقی تراکیب، کھانوں کی کہانیاں، اور دنیا بھر کی ذائقہ دار مہمات شیئر کرتا ہے۔ فوڈی کی جاندار فوٹوگرافی اور آسان زبان ہر ڈش کو ہر مہارت کے فرد کے لیے قابل رسائی بناتی ہے۔ اپنے تجربات شیئر کریں، ٹپس کا تبادلہ کریں، اور اس عالمی کمیونٹی کا حصہ بنیں جو کھانا پکانے اور کھانے سے محبت کرتی ہے۔";
+  }
+  if (lowerUrl.includes("nomadicmatt.com")) {
+    return "نومیڈک میٹ (Nomadic Matt) کا بلاگ تفصیلی سفری منصوبوں، سستے ٹکٹ اور رہائش کے مشوروں، اور مختلف مقامات کے ایماندار جائزوں سے بھرا ہوا ہے۔ ان کا سفری فلسفہ بامعنی تجربات، ثقافتی میل جول، اور ہر ایک کے لیے سفر کو قابل رسائی بنانے پر مرکوز ہے۔ قارئین کو ہم سفر مسافروں کے انٹرویوز، ڈیجیٹل نومیڈز کے وسائل، اور متاثر کن کہانیاں ملتی ہیں جو لوگوں کو اپنے کمفرٹ زون سے باہر نکلنے کی ترغیب دیتی ہیں۔";
+  }
+  if (lowerUrl.includes("travelnow.com")) {
+    return "ٹریول ناؤ (Travel Now) آپ کو تازہ ترین سفری خبریں، منزل کی رہنمائیاں، اور سفر سے بھرپور فائدہ اٹھانے کے مشورے فراہم کرتا ہے۔ یہاں آپ پوشیدہ مقامات دریافت کریں، ماہرین کے مشورے سے اپنی اگلی مہم کی منصوبہ بندی کریں، اور ماحول دوست سفری رجحانات سے لے کر بڑے شہروں کی اہم جگہوں تک سب کچھ جانیں۔ ان کی رہنمائیاں پیکنگ لسٹ، حفاظتی تدابیر، اور کھانے، رہائش اور سرگرمیوں کی سفارشات بھی فراہم کرتی ہیں۔";
+  }
+  if (lowerUrl.includes("healthline.com")) {
+    return "ہیلتھ لائن (Healthline) آپ کو معتبر صحت کی معلومات، ماہرین کے مشورے، اور تازہ ترین تحقیق فراہم کرتا ہے تاکہ آپ صحت مند اور خوش باش زندگی گزار سکیں۔ ان کے مضامین میں غذائیت، فٹنس، ذہنی صحت اور طبی خبریں شامل ہیں۔ ہیلتھ لائن کی رہنمائیاں پیچیدہ صحت کے موضوعات کو آسان اقدامات میں تقسیم کرتی ہیں، تاکہ قارئین باخبر فیصلے کر سکیں۔";
+  }
+  if (lowerUrl.includes("wellness.com")) {
+    return "ویلنیس (Wellness) متوازن زندگی کے لیے آپ کی رہنمائی ہے، جو غذائیت، فٹنس، ذہنی صحت اور مجموعی تندرستی پر مشورے فراہم کرتا ہے۔ حالیہ فیچرز میں مائنڈفولنیس ایکسرسائزز، پودوں پر مبنی کھانے کے منصوبے، اور ویلنیس ماہرین کے انٹرویوز شامل ہیں۔ ویلنیس قارئین کو اپنی روٹین میں ہم آہنگی اور خود کی دیکھ بھال کو ترجیح دینے کی ترغیب دیتا ہے۔";
+  }
+  if (lowerUrl.includes("fitlife.com")) {
+    return "فٹ لائف (FitLife) آپ کو صحت مند زندگی گزارنے کے لیے ضروری اوزار اور حوصلہ افزائی فراہم کرتا ہے۔ ان کا بلاگ ابتدائی سے ایڈوانسڈ ورزش کے روٹینز، طاقت اور برداشت بڑھانے کے مشورے، اور بہترین کارکردگی کے لیے غذائیت کی رہنمائی پیش کرتا ہے۔ فٹ لائف کی کمیونٹی کامیابی کی کہانیاں اور چیلنجز شیئر کرتی ہے تاکہ آپ کو مسلسل متاثر کیا جا سکے۔";
+  }
+  if (lowerUrl.includes("adventure.com/travel-tips")) {
+    return "ایڈونچر ڈاٹ کام (Adventure.com) کا ٹریول ٹپس بلاگ مہم جوئی کے شوقین افراد کے لیے قیمتی خزانہ ہے۔ یہ سائٹ ایڈونچر کی منصوبہ بندی کے لیے عملی مشورے فراہم کرتی ہے، جیسے صحیح سامان کا انتخاب اور مؤثر طریقے سے پیکنگ کرنا۔ قارئین کو منزل کی رہنمائیاں، ذاتی سفری کہانیاں، اور پائیدار و ذمہ دارانہ سفر کے ماہر مشورے ملتے ہیں۔";
+  }
+  // Default generic blog
+  return "خوش آمدید! یہاں ہم رجحانات پر بات کرتے ہیں، کہانیاں شیئر کرتے ہیں، اور آپ کو ٹیکنالوجی، خبریں، کھانا، سفر اور صحت کے تازہ ترین واقعات سے باخبر رکھتے ہیں۔";
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
 }
 
 function speakText(text: string, lang: string) {
@@ -291,6 +372,7 @@ export default function Home() {
     );
   }
 
+<<<<<<< HEAD
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -305,6 +387,38 @@ export default function Home() {
     // Translate
     const urduSum = translateToUrdu(sum);
     setUrdu(urduSum);
+=======
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    // Simulate scraping
+    const scraped = fakeScrape(url);
+    setFullText(scraped);
+    // Call Hugging Face summary API
+    try {
+      const res = await fetch('/api/summarise', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: scraped }),
+      });
+      const data = await res.json();
+      if (data.success && data.summary) {
+        setSummary(data.summary);
+        // Generate Urdu summary based on blog URL
+        const urduSum = translateToUrdu(url);
+        setUrdu(urduSum);
+      } else {
+        setSummary('');
+        setUrdu('');
+        setMessage('❌ Failed to generate summary');
+      }
+    } catch {
+      setSummary('');
+      setUrdu('');
+      setMessage('❌ Error generating summary');
+    }
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
     setLoading(false);
   };
 
@@ -441,6 +555,7 @@ export default function Home() {
                 {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" /> : <AlertCircle className="w-5 h-5 text-red-600" aria-hidden="true" />} {message}
               </div>
             )}
+<<<<<<< HEAD
             {summary && (
               <div className="mb-4 w-full animate-fade-in">
                 <div className="flex items-center gap-2 mb-1">
@@ -482,6 +597,56 @@ export default function Home() {
                 </div>
                 <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
               </div>
+=======
+            {/* Loading indicator */}
+            {loading && (
+              <div className="mb-4 w-full flex items-center justify-center animate-fade-in">
+                <span className="text-blue-600 dark:text-blue-300 font-semibold">Loading summary and translation...</span>
+              </div>
+            )}
+            {/* Show summaries only when not loading and both are available */}
+            {!loading && summary && urdu && (
+              <>
+                <div className="mb-4 w-full animate-fade-in">
+                  <div className="flex items-center gap-2 mb-1">
+                    <FileText className="w-5 h-5 text-blue-500" />
+                    <h2 className="font-semibold">Summary (English):</h2>
+                    <button
+                      onClick={() => handleCopy(summary, 'en')}
+                      className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                      aria-label="Copy English summary"
+                      type="button"
+                    >
+                      {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                    </button>
+                    <button
+                      onClick={() => speakText(summary, 'en')}
+                      className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                      aria-label="Listen to English summary"
+                      type="button"
+                    >
+                      <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
+                    </button>
+                  </div>
+                  <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
+                </div>
+                <div className="mb-4 w-full animate-fade-in">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Languages className="w-5 h-5 text-pink-500" />
+                    <h2 className="font-semibold">Summary (Urdu):</h2>
+                    <button
+                      onClick={() => handleCopy(urdu, 'ur')}
+                      className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                      aria-label="Copy Urdu summary"
+                      type="button"
+                    >
+                      {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                    </button>
+                  </div>
+                  <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
+                </div>
+              </>
+>>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
             )}
             {fullText && (
               <details className="mt-4 w-full animate-fade-in">
