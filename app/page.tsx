@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles, Copy, Check, Volume2, ChevronDown } from "lucide-react";
+import { CheckCircle, AlertCircle, FileText, Globe, Languages, Save, Sparkles, Copy, Check, Volume2, ChevronDown, ThumbsUp, ThumbsDown } from "lucide-react";
 import AuthForm from "../components/AuthForm";
 import { useSession } from '@supabase/auth-helpers-react';
+// Remove: import { NextResponse } from "next/server";
 
 function fakeScrape(url: string): string {
   const lowerUrl = url.toLowerCase();
@@ -34,8 +35,7 @@ Their newsrooms operate 24/7, delivering live reports on politics, business, hea
 
 Special segments and investigative reports give viewers a deeper understanding of complex issues, making CNN a trusted source for news and information.`;
   }
-<<<<<<< HEAD
-=======
+
   if (lowerUrl.includes("newsportal.com")) {
     return `News Portal is your gateway to the world's most important stories, delivering breaking news and in-depth analysis from every corner of the globe.
 
@@ -45,7 +45,6 @@ In addition to headline news, News Portal features investigative reports that un
 
 Whether you're following election coverage, tracking scientific breakthroughs, or seeking insights into economic trends, News Portal keeps you informed with accurate, timely, and comprehensive reporting. Join a global community of readers who rely on News Portal to stay ahead in a rapidly changing world.`;
   }
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
   if (lowerUrl.includes("seriouseats.com")) {
     return `Serious Eats is a haven for food lovers, offering expert recipes, cooking tips, and food science insights. Since 2006, it has inspired millions with in-depth guides, world cuisines, and the latest trends in the culinary world.
 
@@ -53,8 +52,7 @@ Each week, Serious Eats features new recipes tested to perfection, from classic 
 
 Beyond recipes, Serious Eats explores food culture, interviews chefs, and reviews kitchen equipment, making it a comprehensive resource for anyone passionate about cooking and eating well.`;
   }
-<<<<<<< HEAD
-=======
+
   if (lowerUrl.includes("blog.com/food-lovers")) {
     return `Food Lovers is a vibrant blog dedicated to celebrating the joy of cooking and eating. Here, you’ll discover creative recipes from around the world, step-by-step guides for both beginners and seasoned cooks, and inspiring food stories that connect cultures and generations.
 
@@ -62,7 +60,6 @@ Each week, Food Lovers features new culinary adventures, from exploring street f
 
 With stunning food photography and approachable writing, Food Lovers makes every dish feel accessible and exciting. Join a global community of passionate cooks and foodies—swap tips, share your own creations, and be inspired to try something new in the kitchen every day.`;
   }
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
   if (lowerUrl.includes("foodie.com")) {
     return `Foodie celebrates the joy of cooking and eating, sharing creative recipes, food stories, and culinary adventures from around the world. Discover new flavors and connect with a community of fellow food enthusiasts.
 
@@ -105,8 +102,7 @@ Their blog features beginner to advanced workout routines, advice on building st
 
 Whether you’re training for a marathon or just starting out, FitLife provides the tools and encouragement you need to live your healthiest life.`;
   }
-<<<<<<< HEAD
-=======
+
   if (lowerUrl.includes("adventure.com/travel-tips")) {
     return `Adventure.com’s travel tips blog is a treasure trove for explorers and thrill-seekers. The site offers practical advice for planning adventures, from choosing the right gear and packing efficiently to staying safe in remote destinations. Readers will find destination guides, personal travel stories, and expert tips on sustainable and responsible travel.
 
@@ -114,104 +110,17 @@ Adventure.com features interviews with seasoned travelers, recommendations for o
 
 With a focus on adventure, discovery, and personal growth, Adventure.com’s travel tips help you step out of your comfort zone and embrace the world with confidence.`;
   }
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
+  if (lowerUrl.includes("example.com/tech-latest")) {
+    return `Example Tech is your go-to source for the latest advancements in technology, artificial intelligence, and digital innovation. The blog features in-depth articles on emerging trends, product launches, and expert opinions from industry leaders.
+
+Recent posts explore the impact of AI on everyday life, reviews of cutting-edge gadgets, and analysis of major tech events around the world. Example Tech’s writers break down complex topics like quantum computing, cybersecurity, and the future of smart devices, making them accessible to both enthusiasts and professionals.
+
+Whether you’re interested in software development, hardware breakthroughs, or the societal implications of new technologies, Example Tech provides clear, insightful, and up-to-date coverage to keep you informed in the fast-paced world of tech.`;
+  }
   // Default generic blog
   return `Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.\n\nOur mission is to inform, inspire, and connect readers from all walks of life. Stay connected for more insightful articles and join our community of curious minds.`;
 }
 
-<<<<<<< HEAD
-function fakeSummary(text: string, url: string): string {
-  const lowerUrl = url.toLowerCase();
-  if (lowerUrl.includes("techcrunch.com")) {
-    return "TechCrunch delivers breaking news and in-depth analysis on startups, technology, and innovation, making it a go-to source for tech enthusiasts and professionals.";
-  }
-  if (lowerUrl.includes("theverge.com")) {
-    return "The Verge provides insightful coverage of technology, science, and culture, highlighting how innovation shapes our world.";
-  }
-  if (lowerUrl.includes("bbc.com")) {
-    return "BBC News offers comprehensive and reliable news coverage, delivering the latest updates and analysis on global events.";
-  }
-  if (lowerUrl.includes("cnn.com")) {
-    return "CNN delivers real-time news, expert analysis, and exclusive stories, keeping audiences informed on major world events.";
-  }
-  if (lowerUrl.includes("seriouseats.com")) {
-    return "Serious Eats is a leading food website offering expert recipes, cooking tips, and food science insights for passionate cooks.";
-  }
-  if (lowerUrl.includes("foodie.com")) {
-    return "Foodie inspires creativity in the kitchen with diverse recipes and stories, connecting food lovers everywhere.";
-  }
-  if (lowerUrl.includes("nomadicmatt.com")) {
-    return "Nomadic Matt empowers travelers with budget tips, destination advice, and inspiration for exploring the world.";
-  }
-  if (lowerUrl.includes("travelnow.com")) {
-    return "Travel Now offers up-to-date travel news, guides, and tips to help you plan unforgettable trips.";
-  }
-  if (lowerUrl.includes("healthline.com")) {
-    return "Healthline delivers reliable health information and expert guidance for well-being and healthy living.";
-  }
-  if (lowerUrl.includes("wellness.com")) {
-    return "Wellness supports a balanced lifestyle with advice on nutrition, fitness, and mental health.";
-  }
-  if (lowerUrl.includes("fitlife.com")) {
-    return "FitLife inspires healthy living with fitness routines, nutritious recipes, and wellness advice.";
-  }
-  if (lowerUrl.includes("seriouseats.com")) {
-    return "Serious Eats is a leading food website offering expert recipes, cooking tips, and food science insights. Since 2006, it has inspired millions of food lovers with in-depth guides, world cuisines, and the latest trends in the culinary world.";
-  }
-  if (lowerUrl.includes("nomadicmatt.com")) {
-    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
-  }
-  if (lowerUrl.includes("cnn.com") || lowerUrl.includes("bbc.com") || lowerUrl.includes("newsportal.com")) {
-    return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
-  }
-  if (lowerUrl.includes("techcrunch.com") || lowerUrl.includes("theverge.com") || lowerUrl.includes("example.com/tech-latest")) {
-    return "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.";
-  }
-  if (lowerUrl.includes("foodie.com") || lowerUrl.includes("blog.com/food-lovers") || lowerUrl.includes("seriouseats.com")) {
-    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
-  }
-  if (lowerUrl.includes("travelnow.com") || lowerUrl.includes("nomadicmatt.com") || lowerUrl.includes("adventure.com")) {
-    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
-  }
-  if (lowerUrl.includes("wellness.com") || lowerUrl.includes("fitlife.com") || lowerUrl.includes("healthline.com")) {
-    return "Health and wellness are the foundation of a fulfilling life. Building healthy habits, managing stress, and staying active empower individuals to achieve well-being and long-term happiness.";
-  }
-  if (lowerUrl.includes("news")) {
-    return "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.";
-  }
-  if (lowerUrl.includes("tech")) {
-    return "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.";
-  }
-  if (lowerUrl.includes("food")) {
-    return "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.";
-  }
-  if (lowerUrl.includes("travel")) {
-    return "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.";
-  }
-  if (lowerUrl.includes("health")) {
-    return "Health and wellness are the foundation of a fulfilling life. Building healthy habits, managing stress, and staying active empower individuals to achieve well-being and long-term happiness.";
-  }
-  return "Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.";
-}
-
-function translateToUrdu(text: string): string {
-  switch (text.trim()) {
-    case "Technology is rapidly transforming our world, with artificial intelligence and robotics now part of everyday life. As innovation accelerates, society faces new opportunities and challenges, from smarter devices to important questions about privacy and ethics.":
-      return "ٹیکنالوجی تیزی سے ہماری دنیا کو بدل رہی ہے، جہاں مصنوعی ذہانت اور روبوٹکس اب روزمرہ زندگی کا حصہ ہیں۔ جیسے جیسے جدت میں تیزی آ رہی ہے، معاشرہ نئے مواقع اور چیلنجز کا سامنا کر رہا ہے، اسمارٹ ڈیوائسز سے لے کر پرائیویسی اور اخلاقیات جیسے اہم سوالات تک؟";
-    case "The news landscape is constantly evolving, bringing major global events and discoveries to the forefront. Expert analysis and real-time updates help readers stay informed and make sense of a rapidly changing world.":
-      return "خبروں کی دنیا مسلسل بدل رہی ہے، جو اہم عالمی واقعات اور دریافتوں کو سامنے لا رہی ہے۔ ماہرین کی تجزیہ اور بروقت اپ ڈیٹس قارئین کو باخبر رہنے اور تیزی سے بدلتی دنیا کو سمجھنے میں مدد دیتی ہیں۔";
-    case "Food connects cultures and inspires creativity in the kitchen. From traditional recipes to modern fusion, exploring new flavors and cooking techniques brings people together and celebrates the joy of eating.":
-      return "کھانا ثقافتوں کو جوڑتا ہے اور کچن میں تخلیقی صلاحیت کو ابھارتا ہے۔ روایتی پکوانوں سے لے کر جدید فیوژن تک، نئے ذائقے اور پکانے کے طریقے دریافت کرنا لوگوں کو قریب لاتا ہے اور کھانے کی خوشی کو مناتا ہے۔";
-    case "Travel opens doors to new experiences, cultures, and perspectives. Whether exploring hidden gems or famous destinations, each journey offers stories, memories, and a deeper appreciation for the world’s diversity.":
-      return "سفر نئے تجربات، ثقافتوں اور نقطہ نظر کے دروازے کھولتا ہے۔ چاہے آپ پوشیدہ مقامات دریافت کریں یا مشہور منزلیں، ہر سفر کہانیاں، یادیں اور دنیا کی تنوع کی گہری قدر لے کر آتا ہے۔";
-    case "Health and wellness are the foundation of a fulfilling life. Building healthy habits, managing stress, and staying active empower individuals to achieve well-being and long-term happiness.":
-      return "صحت اور تندرستی بھرپور زندگی کی بنیاد ہیں۔ صحت مند عادات اپنانا، دباؤ کو سنبھالنا اور متحرک رہنا انسان کو خوشحالی اور طویل مدتی خوشی حاصل کرنے کے قابل بناتا ہے۔";
-    case "Welcome to our blog! Here, we discuss trends, share stories, and keep you updated on the latest happenings in technology, news, food, travel, and health.":
-      return "خوش آمدید! یہاں ہم رجحانات پر بات کرتے ہیں، کہانیاں شیئر کرتے ہیں، اور آپ کو ٹیکنالوجی، خبریں، کھانا، سفر اور صحت کے تازہ ترین واقعات سے باخبر رکھتے ہیں۔";
-    default:
-      return text; 
-  }
-=======
 function translateToUrdu(url: string): string {
   const lowerUrl = url.toLowerCase();
   if (lowerUrl.includes("techcrunch.com")) {
@@ -256,9 +165,12 @@ function translateToUrdu(url: string): string {
   if (lowerUrl.includes("adventure.com/travel-tips")) {
     return "ایڈونچر ڈاٹ کام (Adventure.com) کا ٹریول ٹپس بلاگ مہم جوئی کے شوقین افراد کے لیے قیمتی خزانہ ہے۔ یہ سائٹ ایڈونچر کی منصوبہ بندی کے لیے عملی مشورے فراہم کرتی ہے، جیسے صحیح سامان کا انتخاب اور مؤثر طریقے سے پیکنگ کرنا۔ قارئین کو منزل کی رہنمائیاں، ذاتی سفری کہانیاں، اور پائیدار و ذمہ دارانہ سفر کے ماہر مشورے ملتے ہیں۔";
   }
+  if (lowerUrl.includes("example.com/tech-latest")) {
+    return "حالیہ پوسٹس میں مصنوعی ذہانت کے روزمرہ زندگی پر اثرات، جدید ترین گیجٹس کے جائزے، اور اہم ٹیکنالوجی ایونٹس کا تجزیہ شامل ہے۔ ایکزامپل ٹیک کے لکھاری کوانٹم کمپیوٹنگ، سائبر سیکیورٹی، اور اسمارٹ ڈیوائسز کے مستقبل جیسے پیچیدہ موضوعات کو آسان زبان میں بیان کرتے ہیں۔ یہ بلاگ ابھرتے ہوئے رجحانات، پروڈکٹ لانچز، اور انڈسٹری ماہرین کی آراء پر مبنی تفصیلی مضامین پیش کرتا ہے۔";
+  }
   // Default generic blog
   return "خوش آمدید! یہاں ہم رجحانات پر بات کرتے ہیں، کہانیاں شیئر کرتے ہیں، اور آپ کو ٹیکنالوجی، خبریں، کھانا، سفر اور صحت کے تازہ ترین واقعات سے باخبر رکھتے ہیں۔";
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
+
 }
 
 function speakText(text: string, lang: string) {
@@ -286,6 +198,7 @@ export default function Home() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [copied, setCopied] = useState<{ type: 'en' | 'ur' | null }>({ type: null });
+  const [feedback, setFeedback] = useState<null | "up" | "down">(null);
   // Remove urduEdited and handlers for editing
 
   const session = useSession();
@@ -372,22 +285,6 @@ export default function Home() {
     );
   }
 
-<<<<<<< HEAD
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
-    // Remove setUrduEdited
-    // Simulate scraping
-    const scraped = fakeScrape(url);
-    setFullText(scraped);
-    // Simulate summary
-    const sum = fakeSummary(scraped, url);
-    setSummary(sum);
-    // Translate
-    const urduSum = translateToUrdu(sum);
-    setUrdu(urduSum);
-=======
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -418,7 +315,6 @@ export default function Home() {
       setUrdu('');
       setMessage('❌ Error generating summary');
     }
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
     setLoading(false);
   };
 
@@ -555,53 +451,14 @@ export default function Home() {
                 {message.includes('✅') ? <CheckCircle className="w-5 h-5 text-green-600" aria-hidden="true" /> : <AlertCircle className="w-5 h-5 text-red-600" aria-hidden="true" />} {message}
               </div>
             )}
-<<<<<<< HEAD
-            {summary && (
-              <div className="mb-4 w-full animate-fade-in">
-                <div className="flex items-center gap-2 mb-1">
-                  <FileText className="w-5 h-5 text-blue-500" />
-                  <h2 className="font-semibold">Summary (English):</h2>
-                  <button
-                    onClick={() => handleCopy(summary, 'en')}
-                    className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                    aria-label="Copy English summary"
-                    type="button"
-                  >
-                    {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                  </button>
-                  <button
-                    onClick={() => speakText(summary, 'en')}
-                    className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                    aria-label="Listen to English summary"
-                    type="button"
-                  >
-                    <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
-                  </button>
-                </div>
-                <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
-              </div>
-            )}
-            {urdu && (
-              <div className="mb-4 w-full animate-fade-in">
-                <div className="flex items-center gap-2 mb-1">
-                  <Languages className="w-5 h-5 text-pink-500" />
-                  <h2 className="font-semibold">Summary (Urdu):</h2>
-                  <button
-                    onClick={() => handleCopy(urdu, 'ur')}
-                    className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
-                    aria-label="Copy Urdu summary"
-                    type="button"
-                  >
-                    {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                  </button>
-                </div>
-                <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
-              </div>
-=======
-            {/* Loading indicator */}
+            {/* Loading indicator with animated spinner */}
             {loading && (
-              <div className="mb-4 w-full flex items-center justify-center animate-fade-in">
-                <span className="text-blue-600 dark:text-blue-300 font-semibold">Loading summary and translation...</span>
+              <div className="mb-4 w-full flex flex-col items-center justify-center animate-fade-in">
+                <svg className="animate-spin h-8 w-8 text-blue-600 mb-2" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                </svg>
+                <span className="text-blue-600 dark:text-blue-300 font-semibold">Generating summary...</span>
               </div>
             )}
             {/* Show summaries only when not loading and both are available */}
@@ -629,6 +486,30 @@ export default function Home() {
                     </button>
                   </div>
                   <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
+                  {/* Feedback buttons */}
+                  <div className="flex gap-2 mt-2">
+                    <button
+                      onClick={() => setFeedback("up")}
+                      className={`p-2 rounded ${feedback === "up" ? "bg-green-200" : "bg-gray-100"}`}
+                      aria-label="Thumbs up"
+                      type="button"
+                    >
+                      <ThumbsUp className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setFeedback("down")}
+                      className={`p-2 rounded ${feedback === "down" ? "bg-red-200" : "bg-gray-100"}`}
+                      aria-label="Thumbs down"
+                      type="button"
+                    >
+                      <ThumbsDown className="w-5 h-5" />
+                    </button>
+                  </div>
+                  {feedback && (
+                    <div className="mt-1 text-sm text-gray-600 dark:text-gray-300">
+                      {feedback === "up" ? "Thanks for your positive feedback!" : "Thanks for your feedback, we'll use it to improve."}
+                    </div>
+                  )}
                 </div>
                 <div className="mb-4 w-full animate-fade-in">
                   <div className="flex items-center gap-2 mb-1">
@@ -646,7 +527,6 @@ export default function Home() {
                   <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
                 </div>
               </>
->>>>>>> 3e7528b (Made changes in features and added Hugging Face API)
             )}
             {fullText && (
               <details className="mt-4 w-full animate-fade-in">
