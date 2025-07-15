@@ -374,7 +374,7 @@ export default function Home() {
             <Sparkles className="w-8 h-8 text-white" />
           </span>
           <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white animate-fade-in">Blog Summariser</span>
-          {/* Dropdown menu for example blogs */}
+          {/* Featured Blogs button moved inline with header */}
           <div className="relative ml-6 w-full max-w-xs sm:max-w-none" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen((v) => !v)}
