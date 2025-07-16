@@ -169,7 +169,7 @@ function translateToUrdu(url: string): string {
     return "حالیہ پوسٹس میں مصنوعی ذہانت کے روزمرہ زندگی پر اثرات، جدید ترین گیجٹس کے جائزے، اور اہم ٹیکنالوجی ایونٹس کا تجزیہ شامل ہے۔ ایکزامپل ٹیک کے لکھاری کوانٹم کمپیوٹنگ، سائبر سیکیورٹی، اور اسمارٹ ڈیوائسز کے مستقبل جیسے پیچیدہ موضوعات کو آسان زبان میں بیان کرتے ہیں۔ یہ بلاگ ابھرتے ہوئے رجحانات، پروڈکٹ لانچز، اور انڈسٹری ماہرین کی آراء پر مبنی تفصیلی مضامین پیش کرتا ہے۔";
   }
   // Default generic blog
-  return "خوش آمدید! یہاں ہم رجحانات پر بات کرتے ہیں، کہانیاں شیئر کرتے ہیں، اور آپ کو ٹیکنالوجی، خبریں، کھانا، سفر اور صحت کے تازہ ترین واقعات سے باخبر رکھتے ہیں۔";
+      return "خوش آمدید! یہاں ہم رجحانات پر بات کرتے ہیں، کہانیاں شیئر کرتے ہیں، اور آپ کو ٹیکنالوجی، خبریں، کھانا، سفر اور صحت کے تازہ ترین واقعات سے باخبر رکھتے ہیں۔";
 
 }
 
@@ -304,7 +304,7 @@ export default function Home() {
         setSummary(data.summary);
         // Generate Urdu summary based on blog URL
         const urduSum = translateToUrdu(url);
-        setUrdu(urduSum);
+    setUrdu(urduSum);
       } else {
         setSummary('');
         setUrdu('');
@@ -464,28 +464,28 @@ export default function Home() {
             {/* Show summaries only when not loading and both are available */}
             {!loading && summary && urdu && (
               <>
-                <div className="mb-4 w-full animate-fade-in">
-                  <div className="flex items-center gap-2 mb-1">
-                    <FileText className="w-5 h-5 text-blue-500" />
-                    <h2 className="font-semibold">Summary (English):</h2>
-                    <button
-                      onClick={() => handleCopy(summary, 'en')}
-                      className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                      aria-label="Copy English summary"
-                      type="button"
-                    >
-                      {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                    </button>
-                    <button
-                      onClick={() => speakText(summary, 'en')}
-                      className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
-                      aria-label="Listen to English summary"
-                      type="button"
-                    >
-                      <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
-                    </button>
-                  </div>
-                  <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
+              <div className="mb-4 w-full animate-fade-in">
+                <div className="flex items-center gap-2 mb-1">
+                  <FileText className="w-5 h-5 text-blue-500" />
+                  <h2 className="font-semibold">Summary (English):</h2>
+                  <button
+                    onClick={() => handleCopy(summary, 'en')}
+                    className="ml-2 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    aria-label="Copy English summary"
+                    type="button"
+                  >
+                    {copied.type === 'en' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                  </button>
+                  <button
+                    onClick={() => speakText(summary, 'en')}
+                    className="ml-1 p-1 rounded hover:bg-blue-100 dark:hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+                    aria-label="Listen to English summary"
+                    type="button"
+                  >
+                    <Volume2 className="w-4 h-4 text-blue-600" aria-hidden="true" />
+                  </button>
+                </div>
+                <p className="bg-blue-50 dark:bg-blue-900 rounded-lg p-3 text-gray-800 dark:text-gray-100 shadow-inner transition">{summary}</p>
                   {/* Feedback buttons */}
                   <div className="flex gap-2 mt-2">
                     <button
@@ -508,24 +508,24 @@ export default function Home() {
                   {feedback && (
                     <div className="mt-1 text-sm text-gray-600 dark:text-gray-300">
                       {feedback === "up" ? "Thanks for your positive feedback!" : "Thanks for your feedback, we'll use it to improve."}
-                    </div>
-                  )}
+              </div>
+            )}
                 </div>
-                <div className="mb-4 w-full animate-fade-in">
-                  <div className="flex items-center gap-2 mb-1">
-                    <Languages className="w-5 h-5 text-pink-500" />
-                    <h2 className="font-semibold">Summary (Urdu):</h2>
-                    <button
-                      onClick={() => handleCopy(urdu, 'ur')}
-                      className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
-                      aria-label="Copy Urdu summary"
-                      type="button"
-                    >
-                      {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
-                    </button>
-                  </div>
-                  <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
+              <div className="mb-4 w-full animate-fade-in">
+                <div className="flex items-center gap-2 mb-1">
+                  <Languages className="w-5 h-5 text-pink-500" />
+                  <h2 className="font-semibold">Summary (Urdu):</h2>
+                  <button
+                    onClick={() => handleCopy(urdu, 'ur')}
+                    className="ml-2 p-1 rounded hover:bg-pink-100 dark:hover:bg-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+                    aria-label="Copy Urdu summary"
+                    type="button"
+                  >
+                    {copied.type === 'ur' ? <Check className="w-4 h-4 text-green-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
+                  </button>
                 </div>
+                <p className="bg-pink-50 dark:bg-pink-900 rounded-lg p-3 font-[Noto Nastaliq Urdu,serif] text-right shadow-inner transition">{urdu}</p>
+              </div>
               </>
             )}
             {fullText && (
