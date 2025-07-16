@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { supabaseServer } from '@/lib/supabaseServer'
 import clientPromise from '@/lib/mongodb'
 
 export async function POST(request: NextRequest) {
@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const { url, summary, urduSummary, fullText } = await request.json()
 
     // Save summary to Supabase
-    const { data: supabaseData, error: supabaseError } = await supabase
+    const { data: supabaseData, error: supabaseError } = await supabaseServer
       .from('summaries')
       .insert([
         {
